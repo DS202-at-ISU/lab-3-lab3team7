@@ -94,14 +94,34 @@ Each team member picks one of the statements in the FiveThirtyEight [analysis](h
 #### FiveThirtyEight Statement
 
 > Quote the statement you are planning to fact-check.
+My statement: “If a character is killed but then secretly hidden away in a stasis tube, they died.”
 
 #### Include the code
 
 Make sure to include the code to derive the (numeric) fact for the statement
+```{r}
+# Check for characters who have both a death and a return, implying a "hidden away" scenario
+hidden_deaths <- deaths %>%
+  filter(Death == "yes") %>%
+  inner_join(returns %>% filter(Return == "yes"), by = c("Name.Alias", "Time")) %>%
+  select(Name.Alias, Time, Death, Return)
+
+# Display the first few rows to see examples of "hidden away" deaths
+head(hidden_deaths)
+```
+
+```{r}
+# Count the number of such scenarios
+num_hidden_deaths <- hidden_deaths %>%
+  nrow()
+num_hidden_deaths
+```
 
 #### Include your answer
 
-Include at least one sentence discussing the result of your fact-checking endeavor.
+For this statement, we’ll interpret “killed” as a record of “yes” in the Death column in our dataset. However, since the concept of “hidden away in a stasis tube” implies they returned without a true resurrection, we’ll look for cases where a character has a recorded death followed by a recorded return in the Return column, regardless of how that return is defined.
+
+According to the dataset, there are 67 instances where a character is recorded as having died and later returned. This supports the notion that even if a character was “hidden away” or returned through other means, their initial recorded “death” is considered legitimate in the dataset. This aligns with the statement from FiveThirtyEight that such characters are indeed counted as having “died,” even if they were later revived or returned from stasis.
 
 ### Manas Mathur
 
@@ -148,3 +168,4 @@ Include at least one sentence discussing the result of your fact-checking endeav
 ## TEAM SUMMARY
 
 Upload your changes to the repository. Discuss and refine answers as a team.
+-- HELP ME SUMMARIZE THIS OR IF YOU GUYS FINISH. JUST LET ME KNOW AND I'LL JUST SUMMARIZE IT (NHAT LE)-- 
