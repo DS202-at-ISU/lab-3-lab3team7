@@ -123,6 +123,95 @@ For this statement, we’ll interpret “killed” as a record of “yes” in t
 
 According to the dataset, there are 67 instances where a character is recorded as having died and later returned. This supports the notion that even if a character was “hidden away” or returned through other means, their initial recorded “death” is considered legitimate in the dataset. This aligns with the statement from FiveThirtyEight that such characters are indeed counted as having “died,” even if they were later revived or returned from stasis.
 
+### Pranava Sai Maganti
+#### FiveThirtyEight Statement
+The statement I am analyzing is: 
+
+> If Iron Man fakes his death to chill out for a while but all his friends (and the reader) know he’s just kicking it somewhere, he didn’t die.
+
+#### Include the code
+
+```{r}
+# Define Iron Man's aliases
+alias1 <- "Anthony Edward \"Tony\" Stark"
+alias2 <- "Anthony Edward Stark"
+
+# Filter for each alias separately
+iron_man_data_alias1 <- av %>% filter(Name.Alias == alias1)
+iron_man_data_alias2 <- av %>% filter(Name.Alias == alias2)
+
+# Select death and return columns for each alias
+iron_man_deaths_alias1 <- iron_man_data_alias1 %>% select(starts_with("Death"))
+iron_man_returns_alias1 <- iron_man_data_alias1 %>% select(starts_with("Return"))
+
+iron_man_deaths_alias2 <- iron_man_data_alias2 %>% select(starts_with("Death"))
+iron_man_returns_alias2 <- iron_man_data_alias2 %>% select(starts_with("Return"))
+
+# Count the number of deaths and returns for each alias
+iron_man_death_count_alias1 <- sum(iron_man_deaths_alias1 == "YES", na.rm = TRUE)
+iron_man_return_count_alias1 <- sum(iron_man_returns_alias1 == "YES", na.rm = TRUE)
+iron_man_no_return_count_alias1 <- sum(
+  (iron_man_deaths_alias1$Death1 == "YES" & iron_man_returns_alias1$Return1 == "NO") |
+  (iron_man_deaths_alias1$Death2 == "YES" & iron_man_returns_alias1$Return2 == "NO") |
+  (iron_man_deaths_alias1$Death3 == "YES" & iron_man_returns_alias1$Return3 == "NO") |
+  (iron_man_deaths_alias1$Death4 == "YES" & iron_man_returns_alias1$Return4 == "NO") |
+  (iron_man_deaths_alias1$Death5 == "YES" & iron_man_returns_alias1$Return5 == "NO"),
+  na.rm = TRUE
+)
+
+iron_man_death_count_alias2 <- sum(iron_man_deaths_alias2 == "YES", na.rm = TRUE)
+iron_man_return_count_alias2 <- sum(iron_man_returns_alias2 == "YES", na.rm = TRUE)
+iron_man_no_return_count_alias2 <- sum(
+  (iron_man_deaths_alias2$Death1 == "YES" & iron_man_returns_alias2$Return1 == "NO") |
+  (iron_man_deaths_alias2$Death2 == "YES" & iron_man_returns_alias2$Return2 == "NO") |
+  (iron_man_deaths_alias2$Death3 == "YES" & iron_man_returns_alias2$Return3 == "NO") |
+  (iron_man_deaths_alias2$Death4 == "YES" & iron_man_returns_alias2$Return4 == "NO") |
+  (iron_man_deaths_alias2$Death5 == "YES" & iron_man_returns_alias2$Return5 == "NO"),
+  na.rm = TRUE
+)
+
+# Display the counts and detailed death/return records for each alias
+results <- list(
+  "Alias 1 - Anthony Edward 'Tony' Stark" = list(
+    "Death Count" = iron_man_death_count_alias1,
+    "Return Count (Returned After Death)" = iron_man_return_count_alias1,
+    "No Return Count (Died Without Returning)" = iron_man_no_return_count_alias1,
+    "Death Records" = iron_man_deaths_alias1,
+    "Return Records" = iron_man_returns_alias1
+  ),
+  "Alias 2 - Anthony Edward Stark" = list(
+    "Death Count" = iron_man_death_count_alias2,
+    "Return Count (Returned After Death)" = iron_man_return_count_alias2,
+    "No Return Count (Died Without Returning)" = iron_man_no_return_count_alias2,
+    "Death Records" = iron_man_deaths_alias2,
+    "Return Records" = iron_man_returns_alias2
+  )
+)
+
+results
+```
+
+#### Include your answer
+
+##### Analysis and Results
+
+Based on the results, the analysis of Iron Man’s death and return records across both aliases, "Anthony Edward 'Tony' Stark" and "Anthony Edward Stark," reveals distinct outcomes:
+
+##### For "Anthony Edward 'Tony' Stark," we observe:
+- **Death Count**: 1 recorded death.
+- **Return Count**: 1 recorded return, indicating that Iron Man returned after his recorded death.
+- **No Return Count**: 0, meaning there were no cases where he died without a subsequent return.
+
+##### For "Anthony Edward Stark," we find:
+- **Death Count**: 1 recorded death.
+- **Return Count**: 0 recorded returns, signifying that he did not return after this death.
+- **No Return Count**: 1, which confirms that there is a case where Iron Man died without a return.
+
+##### Conclusion
+
+These results support the statement that if Iron Man fakes his death but everyone knows he’s still alive or he later returns, it’s not considered a permanent death. For the alias "Anthony Edward 'Tony' Stark," Iron Man returned after his recorded death, aligning with this interpretation. However, for the alias "Anthony Edward Stark," he has one recorded death without a return, indicating that in this case, his death was not staged or temporary and could be seen as more definitive in the dataset's context.
+
+
 ### Manas Mathur
 
 #### FiveThirtyEight Statement
@@ -138,20 +227,6 @@ Make sure to include the code to derive the (numeric) fact for the statement
 Include at least one sentence discussing the result of your fact-checking endeavor.
 
 ### Anaya Ramji
-
-#### FiveThirtyEight Statement
-
-> Quote the statement you are planning to fact-check.
-
-#### Include the code
-
-Make sure to include the code to derive the (numeric) fact for the statement
-
-#### Include your answer
-
-Include at least one sentence discussing the result of your fact-checking endeavor.
-
-### Pranava Sai Maganti
 
 #### FiveThirtyEight Statement
 
