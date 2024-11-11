@@ -25,8 +25,34 @@ Submit a link to your repository on Canvas (only one submission per team) to sig
 Extract from the data below two data sets in long form `deaths` and `returns`
 
 ```{r}
+library(dplyr)
+library(readr)
+library(tidyr)
+```
+
+```{r}
 av <- read.csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/avengers/avengers.csv", stringsAsFactors = FALSE)
 head(av)
+```
+
+```{r}
+# Transform Death columns to long form
+deaths <- av %>%
+  pivot_longer(cols = starts_with("Death"), 
+               names_to = "Death_Time", 
+               values_to = "Death") %>%
+  mutate(Time = parse_number(Death_Time),
+         Death = tolower(Death)) %>%
+  select(-Death_Time)
+
+# Transform Return columns to long form
+returns <- av %>%
+  pivot_longer(cols = starts_with("Return"), 
+               names_to = "Return_Time", 
+               values_to = "Return") %>%
+  mutate(Time = parse_number(Return_Time),
+         Return = tolower(Return)) %>%
+  select(-Return_Time)
 ```
 
 Get the data into a format where the five columns for Death[1-5] are replaced by two columns: Time, and Death. Time should be a number between 1 and 5 (look into the function `parse_number`); Death is a categorical variables with values "yes", "no" and "". Call the resulting data set `deaths`. 
@@ -34,6 +60,28 @@ Get the data into a format where the five columns for Death[1-5] are replaced by
 Similarly, deal with the returns of characters.
 
 Based on these datasets calculate the average number of deaths an Avenger suffers. 
+
+```{r}
+# Calculate the average number of deaths per Avenger
+# We understand that the code below only considers the avengers who have at least 1 death. We provide the second code that consider all avengers right below this code.
+average_deaths <- deaths %>%
+  filter(Death == "yes") %>%
+  group_by(Name.Alias) %>%
+  summarize(total_deaths = n()) %>%
+  summarize(avg_deaths = mean(total_deaths, na.rm = TRUE))
+```
+
+```{r}
+# Calculate the total number of deaths for each Avenger, including those with zero deaths
+average_deaths <- deaths %>%
+  mutate(Death = ifelse(Death == "yes", 1, 0)) %>%  # Convert "yes" to 1 and everything else to 0
+  group_by(Name.Alias) %>%
+  summarize(total_deaths = sum(Death, na.rm = TRUE)) %>%
+  summarize(avg_deaths = mean(total_deaths, na.rm = TRUE))
+
+# Output the result
+average_deaths
+```
 
 ## Individually
 
