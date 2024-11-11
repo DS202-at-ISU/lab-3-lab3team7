@@ -89,16 +89,62 @@ For each team member, copy this part of the report.
 
 Each team member picks one of the statements in the FiveThirtyEight [analysis](https://fivethirtyeight.com/features/avengers-death-comics-age-of-ultron/) and fact checks it based on the data. Use dplyr functionality whenever possible.
 
-### FiveThirtyEight Statement
+### Nhat Le
+
+#### FiveThirtyEight Statement
 
 > Quote the statement you are planning to fact-check.
 
-### Include the code
+#### Include the code
 
 Make sure to include the code to derive the (numeric) fact for the statement
 
-### Include your answer
+#### Include your answer
 
 Include at least one sentence discussing the result of your fact-checking endeavor.
+
+### Manas Mathur
+
+#### FiveThirtyEight Statement
+
+> Quote the statement you are planning to fact-check.
+
+#### Include the code
+
+Make sure to include the code to derive the (numeric) fact for the statement
+
+#### Include your answer
+
+Include at least one sentence discussing the result of your fact-checking endeavor.
+
+### Anaya Ramji
+
+#### FiveThirtyEight Statement
+
+> Quote the statement you are planning to fact-check.
+
+#### Include the code
+
+Make sure to include the code to derive the (numeric) fact for the statement
+
+#### Include your answer
+
+Include at least one sentence discussing the result of your fact-checking endeavor.
+
+### Pranava Sai Maganti
+
+#### FiveThirtyEight Statement
+
+> Quote the statement you are planning to fact-check.
+
+#### Include the code
+
+Make sure to include the code to derive the (numeric) fact for the statement
+
+#### Include your answer
+
+Include at least one sentence discussing the result of your fact-checking endeavor.
+
+## TEAM SUMMARY
 
 Upload your changes to the repository. Discuss and refine answers as a team.
