@@ -20,6 +20,10 @@ Submit a link to your repository on Canvas (only one submission per team) to sig
 
 # Lab 3: Avenger's Peril
 
+```{r, echo=FALSE, out.width="90%", out.height="50%"}
+knitr::include_graphics("images/DS-2020-LAB-3-TEAM-7-11-10-2024.png")
+```
+
 ## As a team
 
 Extract from the data below two data sets in long form `deaths` and `returns`
@@ -281,7 +285,14 @@ The percentage of Avengers who returned after their first death was 66% or two-t
 The percentage of Avengers who returned after their second death was 50% or half.
 The percentage of Avengers who returned after their third death was 50% or half.
 
-## TEAM SUMMARY
+## Summary of Lab Report #3 - Avenger's Peril
+In this lab, we analyzed death and return patterns of Marvel’s Avengers. Key findings:
 
-Upload your changes to the repository. Discuss and refine answers as a team.
--- HELP ME SUMMARIZE THIS OR IF YOU GUYS FINISH. JUST LET ME KNOW AND I'LL JUST SUMMARIZE IT (NHAT LE)-- 
+- **Nhat Le**: Confirmed that hidden stasis counts as a “death,” with 67 cases showing characters returning after recorded deaths.
+- **Pranava Sai Maganti**: Verified that Iron Man’s staged deaths don’t count as true deaths, while unreturned deaths do.
+- **Manas Mathur**: Validated that 69 Avengers experienced at least one recorded death.
+- **Ananya Ramji**: Found that Avengers had a 66% return rate after their first death and 50% for subsequent deaths.
+
+```{r, echo=FALSE, out.width="50%", out.height="50%"}
+knitr::include_graphics("images/iron-man.png")
+```
