@@ -281,7 +281,6 @@ The percentage of Avengers who returned after their first death was 66% or two-t
 The percentage of Avengers who returned after their second death was 50% or half.
 The percentage of Avengers who returned after their third death was 50% or half.
 
-
 ## TEAM SUMMARY
 
 Upload your changes to the repository. Discuss and refine answers as a team.
