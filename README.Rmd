@@ -216,15 +216,19 @@ These results support the statement that if Iron Man fakes his death but everyon
 
 #### FiveThirtyEight Statement
 
-> Quote the statement you are planning to fact-check.
+> The quote I'm analyzing is: "Out of 173 listed Avengers, my analysis found that 69 had died at least one time after they joined the team."
 
 #### Include the code
 
-Make sure to include the code to derive the (numeric) fact for the statement
+```{r}
+av %>% 
+  filter(Death1 == "YES") %>% 
+  count()
+```
 
 #### Include your answer
 
-Include at least one sentence discussing the result of your fact-checking endeavor.
+I was able to conclude that the statement given that 69 avengers had died at least one time is true. This was done by checking the count of the value "Yes" in the 'Death1' column of av.
 
 ### Anaya Ramji
 
