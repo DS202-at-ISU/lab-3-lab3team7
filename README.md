@@ -368,33 +368,132 @@ context.
 
 #### FiveThirtyEight Statement
 
-> Quote the statement you are planning to fact-check.
+> The quote I’m analyzing is: “Out of 173 listed Avengers, my analysis
+> found that 69 had died at least one time after they joined the team.”
 
 #### Include the code
 
-Make sure to include the code to derive the (numeric) fact for the
-statement
+``` r
+av %>% 
+  filter(Death1 == "YES") %>% 
+  count()
+```
+
+    ##    n
+    ## 1 69
 
 #### Include your answer
 
-Include at least one sentence discussing the result of your
-fact-checking endeavor.
+I was able to conclude that the statement given that 69 avengers had
+died at least one time is true. This was done by checking the count of
+the value “Yes” in the ‘Death1’ column of av.
 
-### Anaya Ramji
+### Ananya Ramji
+
+``` r
+deaths
+```
+
+    ## # A tibble: 865 × 18
+    ##    URL                Name.Alias Appearances Current. Gender Probationary.Introl
+    ##    <chr>              <chr>            <int> <chr>    <chr>  <chr>              
+    ##  1 http://marvel.wik… "Henry Jo…        1269 YES      MALE   ""                 
+    ##  2 http://marvel.wik… "Henry Jo…        1269 YES      MALE   ""                 
+    ##  3 http://marvel.wik… "Henry Jo…        1269 YES      MALE   ""                 
+    ##  4 http://marvel.wik… "Henry Jo…        1269 YES      MALE   ""                 
+    ##  5 http://marvel.wik… "Henry Jo…        1269 YES      MALE   ""                 
+    ##  6 http://marvel.wik… "Janet va…        1165 YES      FEMALE ""                 
+    ##  7 http://marvel.wik… "Janet va…        1165 YES      FEMALE ""                 
+    ##  8 http://marvel.wik… "Janet va…        1165 YES      FEMALE ""                 
+    ##  9 http://marvel.wik… "Janet va…        1165 YES      FEMALE ""                 
+    ## 10 http://marvel.wik… "Janet va…        1165 YES      FEMALE ""                 
+    ## # ℹ 855 more rows
+    ## # ℹ 12 more variables: Full.Reserve.Avengers.Intro <chr>, Year <int>,
+    ## #   Years.since.joining <int>, Honorary <chr>, Return1 <chr>, Return2 <chr>,
+    ## #   Return3 <chr>, Return4 <chr>, Return5 <chr>, Notes <chr>, Death <chr>,
+    ## #   Time <dbl>
+
+``` r
+returns
+```
+
+    ## # A tibble: 865 × 18
+    ##    URL                Name.Alias Appearances Current. Gender Probationary.Introl
+    ##    <chr>              <chr>            <int> <chr>    <chr>  <chr>              
+    ##  1 http://marvel.wik… "Henry Jo…        1269 YES      MALE   ""                 
+    ##  2 http://marvel.wik… "Henry Jo…        1269 YES      MALE   ""                 
+    ##  3 http://marvel.wik… "Henry Jo…        1269 YES      MALE   ""                 
+    ##  4 http://marvel.wik… "Henry Jo…        1269 YES      MALE   ""                 
+    ##  5 http://marvel.wik… "Henry Jo…        1269 YES      MALE   ""                 
+    ##  6 http://marvel.wik… "Janet va…        1165 YES      FEMALE ""                 
+    ##  7 http://marvel.wik… "Janet va…        1165 YES      FEMALE ""                 
+    ##  8 http://marvel.wik… "Janet va…        1165 YES      FEMALE ""                 
+    ##  9 http://marvel.wik… "Janet va…        1165 YES      FEMALE ""                 
+    ## 10 http://marvel.wik… "Janet va…        1165 YES      FEMALE ""                 
+    ## # ℹ 855 more rows
+    ## # ℹ 12 more variables: Full.Reserve.Avengers.Intro <chr>, Year <int>,
+    ## #   Years.since.joining <int>, Honorary <chr>, Death1 <chr>, Death2 <chr>,
+    ## #   Death3 <chr>, Death4 <chr>, Death5 <chr>, Notes <chr>, Return <chr>,
+    ## #   Time <dbl>
 
 #### FiveThirtyEight Statement
 
-> Quote the statement you are planning to fact-check.
+> Quote the statement you are planning to fact-check. There’s a 2-in-3
+> chance that a member of the Avengers returned from their first stint
+> in the afterlife, but only a 50 percent chance they recovered from a
+> second or third death.
 
 #### Include the code
 
 Make sure to include the code to derive the (numeric) fact for the
 statement
 
+``` r
+first_return <- deaths %>%
+  filter(Death == "yes", Return1 == "YES", Time == 1)
+first_did_not_return <- deaths %>%
+  filter(Death == "yes", Return1 == "NO", Time == 1)
+
+second_return <- deaths %>%
+  filter(Death == "yes", Return2 == "YES", Time == 2)
+second_did_not_return <- deaths %>%
+  filter(Death == "yes", Return2 == "NO", Time == 2)
+
+third_return <- deaths %>%
+  filter(Death == "yes", Return3 == "YES", Time == 3)
+third_did_not_return <- deaths %>%
+  filter(Death == "yes", Return3 == "NO", Time == 3)
+
+nrow(first_return)/(nrow(first_did_not_return)+nrow(first_return))
+```
+
+    ## [1] 0.6666667
+
+``` r
+nrow(second_return)/(nrow(second_did_not_return)+nrow(second_return))
+```
+
+    ## [1] 0.5
+
+``` r
+nrow(third_return)/(nrow(third_did_not_return)+nrow(third_return))
+```
+
+    ## [1] 0.5
+
 #### Include your answer
 
 Include at least one sentence discussing the result of your
 fact-checking endeavor.
+
+After completing the analysis and calculating the percentages of
+Avengers who returned after their first, second, and third death events,
+I found the following results:
+
+The percentage of Avengers who returned after their first death was 66%
+or two-thirds. The percentage of Avengers who returned after their
+second death was 50% or half. The percentage of Avengers who returned
+after their third death was 50% or half.
 
 ## TEAM SUMMARY
 
